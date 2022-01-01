@@ -29,11 +29,11 @@ router.get('/', function (req, res) {
 
 router.route('/faces/:count').get(function (req, res) {
   let count = req.params.count
-  if (count < 0 || count > uFiles.length) {
-    count = 1
+  if (count < 0) {
+    res.json({message: `count(${count}) should be greater than 0`})
   }
   console.log(`count : ${count}`)
-  const list = uFiles.slice(0, count)
+  const list = uFiles.slice(0, count).reverse()
   console.log(list)
   res.json(list)
 
